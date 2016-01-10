@@ -16,7 +16,7 @@ public class RandomString {
     private static final String[] mailPrefix = { "@126.com", "@163.com",
             "@gmail.com", "@sina.com", "@sohu.com", "@yahoo.com" };
     private static final String chars = "abcdefghijklmnopqrstuvwxyz0123456789";
-    private static final String DS_STRING = "0123456789";
+    private static final String DS_STRING = "123456789";
 
     public static String getRandomDits(int length) {
         Random random = new Random();
