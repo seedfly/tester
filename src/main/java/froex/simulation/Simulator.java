@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Simulator {
-    public int x1, x2, x3, x4;
+    public int x1, x2, x3, x4,x5,x6,x7;
 
     public static Map<String, Price[]> priceMap = new HashMap<String, Price[]>();
     static {
@@ -62,11 +62,17 @@ public class Simulator {
         long w2 = x2 - 100;
         long w3 = x3 - 100;
         long w4 = x4 - 100;
+        long w5 = x5 - 100;
+        long w6 = x6 - 100;
+        long w7 = x7 - 100;
         double a1 = Indicator.AC(prices, time);
-        double a2 = Indicator.AC(prices, time - 7);
-        double a3 = Indicator.AC(prices, time - 14);
-        double a4 = Indicator.AC(prices, time - 21);
-        return (w1 * a1 + w2 * a2 + w3 * a3 + w4 * a4);
+        double a2 = Indicator.AC(prices, time - 2);
+        double a3 = Indicator.AC(prices, time - 4);
+        double a4 = Indicator.AC(prices, time - 6);
+        double a5 = Indicator.AC(prices, time - 8);
+        double a6 = Indicator.AC(prices, time - 10);
+        double a7 = Indicator.AC(prices, time - 12);
+        return (w1 * a1 + w2 * a2 + w3 * a3 + w4 * a4+ w5 * a5+ w6 * a6+ w7 * a7);
     }
 
     private int worth(Order order, Price price) {
