@@ -1,5 +1,7 @@
 package simpleGa;
 
+import froex.simulation.Simulator;
+
 public class FitnessCalc {
 
     static byte[] solution = new byte[64];
@@ -13,7 +15,7 @@ public class FitnessCalc {
     // 就是把01 字符串转换为 01数组， 放在 solution中
     static void setSolution(String newSolution) {
         solution = new byte[newSolution.length()];
-        // Loop through each character of our string and save it in our byte 
+        // Loop through each character of our string and save it in our byte
         for (int i = 0; i < newSolution.length(); i++) {
             String character = newSolution.substring(i, i + 1);
             if (character.contains("0") || character.contains("1")) {
@@ -27,15 +29,16 @@ public class FitnessCalc {
     // 通过和solution比较 ，计算个体的适应值
     static int getFitness(Individual individual) {
         int fitness = 0;
-        for (int i = 0; i < individual.size() && i < solution.length; i++) {
-            if (individual.getGene(i) == solution[i]) {
-                fitness++;
-            }
-        }
+
+        Simulator simulator = new Simulator();
+        individual.copyGene(simulator);
+
+        fitness = simulator.run("H1");
+
         return fitness;
     }
-    
-    //最优的适应值，即为基因序列的长度
+
+    // 最优的适应值，即为基因序列的长度
     static int getMaxFitness() {
         int maxFitness = solution.length;
         return maxFitness;

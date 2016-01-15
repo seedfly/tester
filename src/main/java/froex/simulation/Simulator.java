@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Simulator {
-    public int x1, x2, x3, x4,x5,x6,x7;
-
+    public int x1, x2, x3, x4, x5, x6, x7;
+    public byte x[];
     public static Map<String, Price[]> priceMap = new HashMap<String, Price[]>();
     static {
         priceMap.put("M1", new Price[1]);
@@ -16,7 +16,7 @@ public class Simulator {
     private int withdraw;
     private int profit;
     private int balance = 10000;
-    private int point = 27;
+    private int point = 0;
     private Price[] prices;
     private Order order;
 
@@ -58,21 +58,16 @@ public class Simulator {
 
     private double decide(int time) {
 
-        long w1 = x1 - 100;
-        long w2 = x2 - 100;
-        long w3 = x3 - 100;
-        long w4 = x4 - 100;
-        long w5 = x5 - 100;
-        long w6 = x6 - 100;
-        long w7 = x7 - 100;
-        double a1 = Indicator.AC(prices, time);
-        double a2 = Indicator.AC(prices, time - 2);
-        double a3 = Indicator.AC(prices, time - 4);
-        double a4 = Indicator.AC(prices, time - 6);
-        double a5 = Indicator.AC(prices, time - 8);
-        double a6 = Indicator.AC(prices, time - 10);
-        double a7 = Indicator.AC(prices, time - 12);
-        return (w1 * a1 + w2 * a2 + w3 * a3 + w4 * a4+ w5 * a5+ w6 * a6+ w7 * a7);
+        double a[] = new double[7];
+        for (int i = 0; i < x.length / 2; i++) {
+            a[i] = Indicator.AC(prices, time - (x[x.length / 2 + i] % 20) - 20);
+        }
+
+        double res = 0.0;
+        for (int i = 0; i < x.length / 2; i++) {
+            res = res + (x[i] - 128) * a[i];
+        }
+        return res;
     }
 
     private int worth(Order order, Price price) {

@@ -1,27 +1,31 @@
 package simpleGa;
 
+import java.util.Random;
+
+import froex.simulation.Simulator;
+
 public class Individual {
 
-    static int defaultGeneLength = 64;
-    //基因序列
-    private byte[] genes = new byte[defaultGeneLength];
+    static int geneLength = 14;
+    // 基因序列
+    private byte[] genes = new byte[geneLength];
     // 个体的 适应值
     private int fitness = 0;
 
     // 创建一个随机的 基因个体
     public void generateIndividual() {
-        for (int i = 0; i < size(); i++) {
-            byte gene = (byte) Math.round(Math.random());
-            genes[i] = gene;
-        }
+        Random random = new Random();
+
+        random.nextBytes(genes);
+
     }
 
     /* Getters and setters */
     // Use this if you want to create individuals with different gene lengths
     public static void setDefaultGeneLength(int length) {
-        defaultGeneLength = length;
+        geneLength = length;
     }
-    
+
     public byte getGene(int index) {
         return genes[index];
     }
@@ -45,10 +49,17 @@ public class Individual {
 
     @Override
     public String toString() {
-        String geneString = "";
+        StringBuilder geneString = new StringBuilder("");
         for (int i = 0; i < size(); i++) {
-            geneString += getGene(i);
+            geneString.append(getGene(i)).append(",");
         }
-        return geneString;
+        return geneString.toString();
+    }
+
+    public void copyGene(Simulator simulator) {
+        simulator.x = new byte[genes.length];
+        for (int i = 0; i < genes.length; i++) {
+            simulator.x[i] = genes[i];
+        }
     }
 }
