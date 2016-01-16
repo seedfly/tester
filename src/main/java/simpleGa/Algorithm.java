@@ -6,10 +6,10 @@ public class Algorithm {
 
     /* GA 算法的参数 */
     private static final double uniformRate = 0.5; // 交叉概率
-    private static final double mutationRate = 0.015; // 突变概率
+    private static final double mutationRate = 0.1 ; // 突变概率
     private static final int tournamentSize = 5; // 淘汰数组的大小
     private static final boolean elitism = true; // 精英主义
-    private static final int maxMutate = 200; // 淘汰数组的大小
+    private static final int maxMutate = 255; // 淘汰数组的大小
 
     /* Public methods */
 

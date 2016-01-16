@@ -6,7 +6,7 @@ import froex.simulation.Simulator;
 
 public class Individual {
 
-    static int geneLength = 14;
+    static int geneLength = 32;
     // 基因序列
     private byte[] genes = new byte[geneLength];
     // 个体的 适应值
@@ -14,7 +14,7 @@ public class Individual {
 
     // 创建一个随机的 基因个体
     public void generateIndividual() {
-        Random random = new Random();
+        Random random = new Random(System.currentTimeMillis());
 
         random.nextBytes(genes);
 

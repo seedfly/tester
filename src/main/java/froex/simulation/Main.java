@@ -14,9 +14,9 @@ public class Main {
         BufferedReader br = null;
         try {
             // TODO Auto-generated method stub
-            br = new BufferedReader(
-                    new FileReader("/data/qitan/eurusd2015.csv"));
-            // br = new BufferedReader(new FileReader("E:/eurusd2015.csv"));
+//            br = new BufferedReader(
+//                    new FileReader("/data/qitan/eurusd2015.csv"));
+             br = new BufferedReader(new FileReader("E:/eurusd2015.csv"));
             String str = null;
             List<Price> list = new ArrayList<Price>();
             while ((str = br.readLine()) != null) {
@@ -43,7 +43,7 @@ public class Main {
             while (myPop.getFittest().getFitness() < 50000) {
                 generationCount++;
                 System.out.println("Generation: " + generationCount
-                        + " Fittest: " + myPop.getFittest().getFitness());
+                        + " Fittest: " + myPop.getFittest().getFitness()+ " x: " + myPop.getFittest());
                 myPop = Algorithm.evolvePopulation(myPop);
             }
             System.out.println("Solution found!");
