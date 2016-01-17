@@ -30,7 +30,7 @@ public class Simulator {
 		prices = priceMap.get(period);
 		open(1, 1, prices[34].getOpen()); // first order
 
-		for (int time = 34; time < prices.length; time++) {
+		for (int time = 34; time < prices.length/2; time++) {
 			Price price = prices[time];
 			int val = worth(order, price);
 
@@ -77,16 +77,25 @@ public class Simulator {
 	private double decide1(int time) {
 
 		double res = 1;
+		   double c0=prices[time - 0].getOpen();
+		   double o0=prices[time - 1].getOpen();
+		   double l12=prices[time - 13].getLow();
+		   double h24=prices[time -25].getHigh();
+		   double h7=prices[time -8].getHigh();
+		   double c4=prices[time - 5].getClose();
+		   double o24=prices[time - 25].getOpen();
+		   double o11=prices[time - 12].getOpen();
+		   double o14=prices[time - 15].getOpen();
+		   double o23=prices[time - 24].getOpen();
+		   double h4=prices[time -5].getHigh();
 		try {
-			res = prices[time - 0].getClose() * 1.5 - (prices[time - 1].getClose() + 0.5 * prices[time - 1].getOpen())
-					+ (prices[time - 9].getHigh() - prices[time - 29].getLow()) * 0.5
-							/ (prices[time - 30].getClose() - prices[time - 11].getClose());
+			res = ((c0-o0)-l12/h24)/((h7/h24+Math.max(c4,o24))*2)*4*(Math.min((o11+h24)*0.5,o14-o23)+(o11+h4+Math.max(o14,h7))/3);
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return res > 6 ? 1 : -1;
+		return res > 37 ? 1 : -1;
 	}
 
 	private double decide(int time) {
@@ -96,7 +105,7 @@ public class Simulator {
 		}
 		FunctionBinaryTree functree = new FunctionBinaryTree(y);
 		for (int i = y.length / 2; i < y.length; i++) {
-			int shift = Math.abs((int) (functree.treeNodes[i].getData() / 5));
+			int shift = Math.abs((int) (functree.treeNodes[i].getData() / 5))+1;
 			int type = Math.abs((int) (functree.treeNodes[i].getData() % 5));
 			switch (type) {
 			case 0:

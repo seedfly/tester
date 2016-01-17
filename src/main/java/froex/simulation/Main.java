@@ -16,7 +16,7 @@ public class Main {
             // TODO Auto-generated method stub
 //            br = new BufferedReader(
 //                    new FileReader("/data/qitan/eurusd2015.csv"));
-             br = new BufferedReader(new FileReader("E:/eurusd2015.csv"));
+             br = new BufferedReader(new FileReader("c:/eurusd2015.csv"));
             String str = null;
             List<Price> list = new ArrayList<Price>();
             while ((str = br.readLine()) != null) {
