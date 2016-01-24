@@ -4,7 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DateTools {
-    private long mill = System.currentTimeMillis()-3600000l*24*100;
+//    private long mill = System.currentTimeMillis()-3600000l*24*100;
+    private long mill = System.currentTimeMillis();
     SimpleDateFormat sdf = new SimpleDateFormat("YY-MM-dd HH:mm");
     SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy年MM月dd日");
 
